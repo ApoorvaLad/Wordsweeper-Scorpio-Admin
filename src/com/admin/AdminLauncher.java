@@ -23,8 +23,10 @@ public class AdminLauncher {
 		}
 
 		// Initialize the client application and its corresponding model
-		Model model = new Model();
-		Application app = new Application(model);
+		/*
+		 * Model model = new Model(); Application app = new Application();
+		 */
+		final Application app = Application.getInstance();
 
 		/*
 		 * // set up the chain of responsibility
@@ -36,7 +38,7 @@ public class AdminLauncher {
 		 */
 
 		AdminMessageHandler handler = new AdminMessageHandler(app);
-		
+
 		// try to connect to the server. Once connected, messages are going to
 		// be processed by
 		// SampleClientMessageHandler. For now we just continue on with the
@@ -53,8 +55,6 @@ public class AdminLauncher {
 		// need this ServerAccess
 		// object.
 		app.setServerAccess(sa);
-
-		
 
 		// at this point, we need to make app visible, otherwise we would
 		// terminate application
