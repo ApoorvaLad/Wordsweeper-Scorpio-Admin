@@ -10,5 +10,5 @@ public interface IAdminController {
 	 * If unable to process a valid response, then must thrown a
 	 * RuntimeException
 	 */
-	public boolean process(Message response);
+	public boolean process(Message request);
 }

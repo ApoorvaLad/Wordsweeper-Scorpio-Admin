@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Hashtable;
 
-import com.admin.controller.IController;
+import com.admin.controller.IAdminController;
 import com.admin.xml.Message;
 import com.admin.xml.Parser;
 
@@ -43,11 +43,11 @@ public class ServerAccess {
 	Hashtable<String, Tuple> pending = new Hashtable<String, Tuple>();
 
 	class Tuple {
-		IController controller;
+		IAdminController controller;
 		Message request;
 		String id;
 
-		Tuple(IController c, Message r, String i) {
+		Tuple(IAdminController c, Message r, String i) {
 			controller = c;
 			request = r;
 			id = i;
@@ -125,7 +125,7 @@ public class ServerAccess {
 	 * The given IController object is going to be responsible for processing
 	 * the response that comes back.
 	 */
-	public synchronized boolean sendRequest(IController c, Message m) {
+	public synchronized boolean sendRequest(IAdminController c, Message m) {
 		if (!isActive) {
 			return false;
 		}
@@ -169,7 +169,8 @@ public class ServerAccess {
 					try {
 						Tuple p = pending.remove(m.id());
 						if (p != null) {
-							p.controller.process(p.request, m);
+							p.controller.process(p.request);
+							//p.controller.process(p.request, m);
 						} else {
 							handler.process(m);
 						}

@@ -9,17 +9,6 @@ public class AdminMessageHandler implements IMessageHandler {
 
 	Application app;
 
-	// by default is the empty handler...
-	ControllerChain chain = new EmptyHandler();
-
-	/**
-	 * Register new controller chain as occuring before existing chain.
-	 */
-	public void registerHandler(ControllerChain handler) {
-		handler.next = chain;
-		chain = handler;
-	}
-
 	public AdminMessageHandler(Application app) {
 		this.app = app;
 	}

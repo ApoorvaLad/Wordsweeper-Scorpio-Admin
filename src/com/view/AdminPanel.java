@@ -1,54 +1,63 @@
 package com.view;
 
-
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import com.admin.controller.GameController;
+import com.admin.controller.GameListController;
 
-public class AdminPanel extends JPanel{
-	
-	//GUI widgets for displaying the information.
+
+public class AdminPanel extends JPanel {
+
+	// GUI widgets for displaying the information.
 	GamePanel gamePanel = null;
 	GameListPanel gameListPanel = null;
-	
+	JButton getGames;
+
 	public AdminPanel() {
 		initialise();
 	}
 
-	
 	void initialise() {
-		/*Label headerLabel = new Label();
-		headerLabel.setBounds(new Rectangle(388, 260, 102, 23));
-		headerLabel.setText("Game Manager");*/
+		/*
+		 * Label headerLabel = new Label(); headerLabel.setBounds(new
+		 * Rectangle(388, 260, 102, 23)); headerLabel.setText("Game Manager");
+		 */
 		setLayout(null);
-		setSize(633, 490);
-		
-		//add(getGamePanel());
+		setSize(633, 510);
+		getGames = new JButton("Get Games");
+		getGames.setBounds(new Rectangle(0, 0, 150, 30));
+		getGames.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new GameListController(Application.instance).process();
+			}
+		});
+
+		add(getGames);
+		// add(getGamePanel());
 		add(getGameListPanel());
-		//add(headerLabel);
+		// add(headerLabel);
 	}
-	
-	public GamePanel getGamePanel() {
-		if(gamePanel == null) {
-			gamePanel  = new GamePanel();
-			gamePanel.setBounds(new Rectangle(15, 290, 256, 490));
-		}
-		return gamePanel;
-	}
-	
+
+	/*
+	 * public GamePanel getGamePanel() { if(gamePanel == null) { gamePanel = new
+	 * GamePanel(); gamePanel.setBounds(new Rectangle(15, 290, 256, 600)); }
+	 * return gamePanel; }
+	 */
+
 	public GameListPanel getGameListPanel() {
-		if(gameListPanel == null) {
+		if (gameListPanel == null) {
 			gameListPanel = new GameListPanel();
 			gameListPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-			gameListPanel.setBounds(new Rectangle(0, 0, 150, 450));
+			gameListPanel.setBounds(new Rectangle(0, 30, 150, 480));
 		}
 		return gameListPanel;
 	}
-	
-	
-	
-	
+
 }

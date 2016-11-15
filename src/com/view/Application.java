@@ -1,10 +1,8 @@
 package com.view;
 
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 
 import com.admin.ServerAccess;
-import com.model.Model;
 
 
 public class Application extends JFrame {
@@ -27,7 +25,7 @@ public class Application extends JFrame {
 	Application() {
 		super();
 		setTitle("Game Manager");
-		setSize(633, 490);
+		setSize(633, 550);
 		adminPanel = new AdminPanel();
 		add(adminPanel);
 	}
