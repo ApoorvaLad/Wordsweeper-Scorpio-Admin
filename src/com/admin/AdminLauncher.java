@@ -1,6 +1,9 @@
 package com.admin;
 
 import com.admin.controller.AdminMessageHandler;
+import com.admin.controller.ConnectResponseController;
+import com.admin.controller.GameListResponseController;
+import com.admin.controller.ShowGameStateResponseController;
 import com.admin.xml.Message;
 import com.model.Model;
 import com.view.Application;
@@ -23,21 +26,17 @@ public class AdminLauncher {
 		}
 
 		// Initialize the client application and its corresponding model
-		/*
-		 * Model model = new Model(); Application app = new Application();
-		 */
-		final Application app = Application.getInstance();
 
-		/*
-		 * // set up the chain of responsibility
-		 * 
-		 * SampleClientMessageHandler handler = new
-		 * SampleClientMessageHandler(app); handler.registerHandler(new
-		 * BoardResponseController(app, model)); handler.registerHandler(new
-		 * ConnectResponseController(app, model));
-		 */
+		Model model = new Model();
+
+		Application app = Application.getInstance();
+
+		// set up the chain of responsibility
 
 		AdminMessageHandler handler = new AdminMessageHandler(app);
+		handler.registerHandler(new ConnectResponseController(app, model));
+		handler.registerHandler(new GameListResponseController(app, model));
+		handler.registerHandler(new ShowGameStateResponseController(app,model));
 
 		// try to connect to the server. Once connected, messages are going to
 		// be processed by
@@ -55,6 +54,14 @@ public class AdminLauncher {
 		// need this ServerAccess
 		// object.
 		app.setServerAccess(sa);
+
+		// send an introductory connect request now that we have created (but
+		// not made visible!)
+		// the GUI
+		String xmlString = Message.requestHeader() + "<connectRequest/></request>";
+		Message m = new Message(xmlString);
+		sa.sendRequest(m);
+		// /app.getRequestArea().append(m.toString() + "\n");
 
 		// at this point, we need to make app visible, otherwise we would
 		// terminate application

@@ -7,6 +7,11 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+/**
+ * Board Panel
+ * @author Apoorva
+ *
+ */
 public class BoardPanel extends JPanel{
 
 	Scrollbar scrollbarH = null;

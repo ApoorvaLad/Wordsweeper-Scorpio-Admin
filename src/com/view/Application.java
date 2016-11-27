@@ -39,6 +39,13 @@ public class Application extends JFrame {
 	public ServerAccess getServerAccess() {
 		return serverAccess;
 	}
+	
+	public AdminPanel getAdminPanel() {
+		return adminPanel;
+	}
+
+
+	
 
 	
 	

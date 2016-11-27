@@ -1,19 +1,24 @@
 package com.view;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import sun.text.normalizer.CharTrie.FriendAgent;
+import com.admin.controller.GameController;
+import com.model.Game;
 
+
+/**
+ * List OfGames
+ * @author Apoorva
+ *
+ */
 public class GameListPanel extends JPanel {
 
 	JList list;
@@ -27,22 +32,29 @@ public class GameListPanel extends JPanel {
 		setLayout(new BorderLayout());
 		model = new DefaultListModel();
 		list = new JList(model);
-
+		
+		
 		JScrollPane jScrollPane = new JScrollPane(list);
-		//jScrollPane.setBounds(new Rectangle(7, 50, 100, 435));
+		// jScrollPane.setBounds(new Rectangle(7, 50, 100, 435));
 		JButton showGame = new JButton("Show Game");
-		
-		
+		showGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				list.getSelectedValue();
+				Game game = new Game(); 
+				new GameController(Application.instance)
+						.process(game.getGameDetails().get(list.getSelectedValue().toString()));
 
-		// showGame.setBounds(new Rectangle(7, 490, 50, 10));
-		/*for (int i = 0; i < 150; i++)
-			model.addElement("Element " + i);*/
+			}
+		});
 
 		add(jScrollPane, BorderLayout.CENTER);
-		
-		add(showGame, BorderLayout.PAGE_END);
-		
 
+		add(showGame, BorderLayout.PAGE_END);
+
+	}
+
+	public DefaultListModel getModel() {
+		return model;
 	}
 
 }

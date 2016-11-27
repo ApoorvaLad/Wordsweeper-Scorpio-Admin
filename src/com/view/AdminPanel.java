@@ -12,7 +12,11 @@ import javax.swing.JPanel;
 import com.admin.controller.GameController;
 import com.admin.controller.GameListController;
 
-
+/**
+ * The Outer panel
+ * @author Apoorva
+ *
+ */
 public class AdminPanel extends JPanel {
 
 	// GUI widgets for displaying the information.
@@ -36,12 +40,14 @@ public class AdminPanel extends JPanel {
 		getGames.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GameListController(Application.instance).process();
+				
 			}
 		});
-
 		add(getGames);
-		// add(getGamePanel());
 		add(getGameListPanel());
+		
+		// add(getGamePanel());
+		
 		// add(headerLabel);
 	}
 
