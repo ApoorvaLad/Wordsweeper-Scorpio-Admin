@@ -1,6 +1,9 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.model.Player;
 
 /**
  * Object model for Game
@@ -14,6 +17,7 @@ public class Game {
 	private int noOfPlayers;
 	private int score;
 	private String playerName;
+	private ArrayList<Player> players;
 
 	public void setGameDetails(String gameName, String gameId) {
 		gameDetails.put(gameName, gameId);
@@ -47,12 +51,13 @@ public class Game {
 		this.score = score;
 	}
 
-	public String getPlayerName() {
-		return playerName;
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
-
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	
+	public void setPlayer(ArrayList<Player> players){
+		this.players=players;
+		
 	}
 
 }

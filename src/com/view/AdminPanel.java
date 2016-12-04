@@ -46,16 +46,21 @@ public class AdminPanel extends JPanel {
 		add(getGames);
 		add(getGameListPanel());
 		
-		// add(getGamePanel());
+		 add(getGamePanel());
 		
 		// add(headerLabel);
 	}
 
-	/*
-	 * public GamePanel getGamePanel() { if(gamePanel == null) { gamePanel = new
-	 * GamePanel(); gamePanel.setBounds(new Rectangle(15, 290, 256, 600)); }
-	 * return gamePanel; }
-	 */
+	
+	  public GamePanel getGamePanel() { 
+		  if(gamePanel == null) {
+			  gamePanel = new GamePanel(); 
+			  gameListPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+			  gamePanel.setBounds(new Rectangle(15, 290, 256, 600));
+			  }
+		  	return gamePanel; 
+		  	}
+	 
 
 	public GameListPanel getGameListPanel() {
 		if (gameListPanel == null) {
