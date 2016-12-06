@@ -9,11 +9,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.admin.controller.GameController;
 import com.admin.controller.GameListController;
 
 /**
  * The Outer panel
+ * 
  * @author Apoorva
  *
  */
@@ -40,27 +40,45 @@ public class AdminPanel extends JPanel {
 		getGames.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GameListController(Application.instance).process();
-				
+
 			}
 		});
 		add(getGames);
 		add(getGameListPanel());
-		
-		 add(getGamePanel());
-		
+//<<<<<<< HEAD
+//		
+//		 add(getGamePanel());
+//		
+//		// add(headerLabel);
+//	}
+//
+//	
+//	  public GamePanel getGamePanel() { 
+//		  if(gamePanel == null) {
+//			  gamePanel = new GamePanel(); 
+//			  gameListPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+//			  gamePanel.setBounds(new Rectangle(15, 290, 256, 600));
+//			  }
+//		  	return gamePanel; 
+//		  	}
+//	 
+//=======
+		add(getGamePanel());
+
+		// add(getGamePanel());
+
 		// add(headerLabel);
 	}
 
-	
-	  public GamePanel getGamePanel() { 
-		  if(gamePanel == null) {
-			  gamePanel = new GamePanel(); 
-			  gameListPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-			  gamePanel.setBounds(new Rectangle(15, 290, 256, 600));
-			  }
-		  	return gamePanel; 
-		  	}
-	 
+	public GamePanel getGamePanel() {
+		if (gamePanel == null) {
+			gamePanel = new GamePanel();
+			gamePanel.setVisible(false);
+			gamePanel.setBounds(new Rectangle(50, 50, 650, 700));
+			//gamePanel.setBounds(new Rectangle(200, 70, 256, 400));
+		}
+		return gamePanel;
+	}
 
 	public GameListPanel getGameListPanel() {
 		if (gameListPanel == null) {

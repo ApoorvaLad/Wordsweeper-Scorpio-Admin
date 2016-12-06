@@ -40,6 +40,7 @@ public class GameListPanel extends JPanel {
 		showGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				list.getSelectedValue();
+				
 				Game game = new Game(); 
 				new GameController(Application.instance)
 						.process(game.getGameDetails().get(list.getSelectedValue().toString()));
