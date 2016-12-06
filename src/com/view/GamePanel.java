@@ -1,23 +1,20 @@
 package com.view;
 
-import java.awt.BorderLayout;
 import java.awt.Label;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 
 /**
- * Game State
- * @author Rishitha
+ 
+ * 
+ * @author Apoorva
  *
  */
 public class GamePanel extends JPanel {
 
 	JScrollPane gamesListPanel = null;
+/*<<<<<<< HEAD
 	JList list;
 	DefaultListModel model;
 	
@@ -42,4 +39,30 @@ public class GamePanel extends JPanel {
 	public DefaultListModel getModel() {
 		return model;
 	} 
+=======*/
+	int rows;
+	int columns;
+	BoardPanel boardPanel;
+	public GamePanel() {
+		 boardPanel = new BoardPanel();
+		
+		initialize();
+	}
+
+	void initialize() {
+		Label header = new Label();
+		rows = 2;
+		columns = 2;
+		
+		//setBounds(new Rectangle(100, 50, 650, 700));
+		add(boardPanel);
+		/*
+		add(new Button("1"));
+		add(new Button("2"));
+		add(new Button("3"));
+		add(new Button("4"));*/
+	}
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
 }

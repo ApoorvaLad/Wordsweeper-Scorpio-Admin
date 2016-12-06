@@ -2,7 +2,6 @@ package com.admin.controller;
 
 import java.util.HashMap;
 
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -39,7 +38,7 @@ public class GameListResponseController extends ControllerChain {
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			String gameID = n.getAttributes().getNamedItem("gameId").getNodeValue();
-
+			
 			game.setGameID(gameID);
 			gameDetails.put("Game " + (i + 1),gameID);
 			model.addGame(game);

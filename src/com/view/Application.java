@@ -26,6 +26,7 @@ public class Application extends JFrame {
 		super();
 		setTitle("Game Manager");
 		setSize(633, 550);
+		
 		adminPanel = new AdminPanel();
 		add(adminPanel);
 	}
