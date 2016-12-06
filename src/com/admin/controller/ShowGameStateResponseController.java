@@ -135,8 +135,6 @@ public class ShowGameStateResponseController extends ControllerChain {
 			}
 		}
 
-		// TODO Auto-generated method stub
-
 	}
 
 }
