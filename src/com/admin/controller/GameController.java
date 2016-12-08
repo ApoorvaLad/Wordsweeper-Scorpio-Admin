@@ -27,7 +27,10 @@ public class GameController implements IAdminController {
 	}
 
 	public void process(String gameId) {
-		
+		if (application.getAdminPanel().getGamePanel().getBoardPanel().getPanel().getComponents().length != 0) {
+			application.getAdminPanel().getGamePanel().getBoardPanel().getPanel().removeAll();
+		}
+		application.getAdminPanel().getGamePanel().getBoardPanel().getModel().removeAllElements();
 		String xmlString = Message.requestHeader() + "<showGameStateRequest gameId = '" + gameId + "'/></request>";
 		Message m = new Message(xmlString);
 

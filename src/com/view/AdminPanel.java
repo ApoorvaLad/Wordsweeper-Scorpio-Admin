@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import com.admin.controller.GameListController;
 
@@ -23,16 +24,13 @@ public class AdminPanel extends JPanel {
 	GamePanel gamePanel = null;
 	GameListPanel gameListPanel = null;
 	JButton getGames;
-
+	
 	public AdminPanel() {
 		initialise();
 	}
 
 	void initialise() {
-		/*
-		 * Label headerLabel = new Label(); headerLabel.setBounds(new
-		 * Rectangle(388, 260, 102, 23)); headerLabel.setText("Game Manager");
-		 */
+
 		setLayout(null);
 		setSize(633, 510);
 		getGames = new JButton("Get Games");
@@ -43,43 +41,13 @@ public class AdminPanel extends JPanel {
 
 			}
 		});
+
 		add(getGames);
 		add(getGameListPanel());
-//<<<<<<< HEAD
-//		
-//		 add(getGamePanel());
-//		
-//		// add(headerLabel);
-//	}
-//
-//	
-//	  public GamePanel getGamePanel() { 
-//		  if(gamePanel == null) {
-//			  gamePanel = new GamePanel(); 
-//			  gameListPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-//			  gamePanel.setBounds(new Rectangle(15, 290, 256, 600));
-//			  }
-//		  	return gamePanel; 
-//		  	}
-//	 
-//=======
 		add(getGamePanel());
 
-		// add(getGamePanel());
-
-		// add(headerLabel);
 	}
-
-	public GamePanel getGamePanel() {
-		if (gamePanel == null) {
-			gamePanel = new GamePanel();
-			gamePanel.setVisible(false);
-			gamePanel.setBounds(new Rectangle(50, 50, 650, 700));
-			//gamePanel.setBounds(new Rectangle(200, 70, 256, 400));
-		}
-		return gamePanel;
-	}
-
+	
 	public GameListPanel getGameListPanel() {
 		if (gameListPanel == null) {
 			gameListPanel = new GameListPanel();
@@ -88,5 +56,20 @@ public class AdminPanel extends JPanel {
 		}
 		return gameListPanel;
 	}
+
+	public GamePanel getGamePanel() {
+		if (gamePanel == null) {
+			gamePanel = new GamePanel(gameListPanel.list);
+			gamePanel.setVisible(false);
+			gamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+			gamePanel.setBounds(new Rectangle(150, 0, 633, 510));
+			//gamePanel.setBounds(new Rectangle(50, 0, 650, 700));
+		}
+		return gamePanel;
+	}
+	
+	
+
+	
 
 }

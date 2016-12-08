@@ -1,9 +1,11 @@
 package com.view;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -29,12 +31,14 @@ public class GameListPanel extends JPanel {
 	}
 
 	private void initilise() {
+		
 		setLayout(new BorderLayout());
 		model = new DefaultListModel();
 		list = new JList(model);
 		
 		
 		JScrollPane jScrollPane = new JScrollPane(list);
+		
 		// jScrollPane.setBounds(new Rectangle(7, 50, 100, 435));
 		JButton showGame = new JButton("Show Game");
 		showGame.addActionListener(new ActionListener() {
@@ -49,8 +53,7 @@ public class GameListPanel extends JPanel {
 		});
 
 		add(jScrollPane, BorderLayout.CENTER);
-
-		add(showGame, BorderLayout.PAGE_END);
+		add(showGame,BorderLayout.PAGE_END);
 
 	}
 

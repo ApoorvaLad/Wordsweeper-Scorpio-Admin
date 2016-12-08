@@ -1,20 +1,24 @@
 package com.admin.controller;
 
 import java.awt.Button;
+import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.admin.xml.Message;
+import com.model.Game;
 import com.model.Model;
 import com.view.Application;
+import com.view.GamePanel;
 
 /**
-
+ * 
  * 
  * @author Apoorva
  *
@@ -36,25 +40,27 @@ public class ShowGameStateResponseController extends ControllerChain {
 		if (!type.equals("boardResponse")) {
 			return next.process(response);
 		}
-		/*Node listResponse = response.contents.getFirstChild();
-		Game game = new Game();
-		ArrayList<Player> players = null;
-		NodeList list = listResponse.getChildNodes();
-		for (int i = 0; i < list.getLength(); i++) {
-			Player player=new Player();
-			Node n = list.item(i);
-			String name = n.getAttributes().getNamedItem("name").getNodeValue();
-			player.setName(name);
-			String score = n.getAttributes().getNamedItem("score").getNodeValue();
-			player.setScore(score);
-			players.add(player);
-			game.setPlayer(players);
+		/*
+		 * Node listResponse = response.contents.getFirstChild(); Game game =
+		 * new Game(); ArrayList<Player> players = null; NodeList list =
+		 * listResponse.getChildNodes(); for (int i = 0; i < list.getLength();
+		 * i++) { Player player=new Player(); Node n = list.item(i); String name
+		 * = n.getAttributes().getNamedItem("name").getNodeValue();
+		 * player.setName(name); String score =
+		 * n.getAttributes().getNamedItem("score").getNodeValue();
+		 * player.setScore(score); players.add(player); game.setPlayer(players);
+		 * 
+		 * app.getAdminPanel().getGamePanel().getModel().addElement("Name: " +
+		 * player.getname());
+		 * app.getAdminPanel().getGamePanel().getModel().addElement("Score: " +
+		 * player.getScore()); }
+		 */
 
-		app.getAdminPanel().getGamePanel().getModel().addElement("Name: " + player.getname());
-		app.getAdminPanel().getGamePanel().getModel().addElement("Score: " + player.getScore());
-		}*/
-		
-
+		GamePanel gamePanel = app.getAdminPanel().getGamePanel();
+		/*
+		 * gamePanel.getBoardPanel().removeAll();
+		 * gamePanel.getBoardPanel().updateUI();
+		 */
 		Node listResponse = response.contents.getFirstChild();
 		NodeList list = listResponse.getChildNodes();
 		int columncount = Integer.parseInt(listResponse.getAttributes().getNamedItem("size").getNodeValue());
@@ -62,7 +68,10 @@ public class ShowGameStateResponseController extends ControllerChain {
 		listResponse.getNodeValue();
 
 		int listIndex = 0;
-		app.getAdminPanel().getGamePanel().getBoardPanel().addComponents(rowCount, columncount);
+
+		gamePanel.getBoardPanel().addComponents(rowCount, columncount);
+		// app.getAdminPanel().getGamePanel().getBoardPanel().addComponents(rowCount,
+		// columncount);
 
 		JButton[][] buttons = new JButton[rowCount][columncount];
 		Button button = new Button("");
@@ -73,24 +82,24 @@ public class ShowGameStateResponseController extends ControllerChain {
 			for (int col = 0; col < columncount; col++) {
 				buttons[row][col] = new JButton("");
 
-				// Button button = new Button(items.get(listIndex++));
-				// button = new Button("");
-
-				/*
-				 * if ((row < (pos_x + 3)) && (col < (pos_y + 3))) {
-				 * button.setLabel("A"); //
-				 * button.setLabel(items.get(listIndex++));
-				 * 
-				 * }
-				 */
-				// Button button = new Button(Integer.toString(col));
-				// boardPanel.add(button);
-				app.getAdminPanel().getGamePanel().getBoardPanel().getPanel().add(buttons[row][col]);
+				gamePanel.getBoardPanel().getPanel().add(buttons[row][col]);
 			}
 
 		}
+		Game game = new Game();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
+			JLabel e = new JLabel("Player: " + n.getAttributes().getNamedItem("name").getNodeValue() + "      Score: "
+					+ n.getAttributes().getNamedItem("score").getNodeValue());
+
+			// app.getAdminPanel().getGamePanel().getBoardPanel().getDetails().add(e);
+			// app.getAdminPanel().getGamePanel().
+			
+			gamePanel.getBoardPanel().getModel().addElement(e.getText());
+			/*
+			 * app.getAdminPanel().getGamePanel().getBoardPanel().getNameLabel()
+			 * .setText(n.getAttributes().getNamedItem("name").getNodeValue());
+			 */
 			createPlayerBoard(n, buttons);
 
 		}
@@ -114,8 +123,10 @@ public class ShowGameStateResponseController extends ControllerChain {
 
 		// }
 		// boardPanel.setBounds(new Rectangle(100, 50, 650, 700));
-		//app.getAdminPanel().getGamePanel().setBounds(new Rectangle(70, 50, 650, 700));
-		app.getAdminPanel().getGamePanel().setVisible(true);
+		// app.getAdminPanel().getGamePanel().setBounds(new Rectangle(180, 50,
+		// 500, 300));
+		// app.getAdminPanel().
+		gamePanel.setVisible(true);
 
 		return true;
 	}
